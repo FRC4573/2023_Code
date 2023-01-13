@@ -24,6 +24,7 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   DoubleSolenoid piston1;
   Joystick joystick = new Joystick(0);
+  
 
   /**
    * This function is run when the robot is first started up and should be used for any
