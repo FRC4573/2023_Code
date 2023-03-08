@@ -47,7 +47,7 @@ public class AutonomousSequence extends SequentialCommandGroup{
             //new DriveForDistanceCommand(1, 0.5)
         );
         */
-        /* 
+        
         //Drop cone drive forward, pick up game piece, auto stabilize
         addCommands(
             new ArmToAngle(m_arm,-65),
@@ -55,16 +55,17 @@ public class AutonomousSequence extends SequentialCommandGroup{
             new OpenHands(m_hand),
             new WaitCommand(1),
             new ArmToAngleBackward(m_arm),
-            new DriveForDistanceCommand(5.72, 0.5),
-            new GyroTurnToAngleCommand(72),
-            new DriveForDistanceCommand(1.5, 0.5),
+            new DriveForDistanceCommand(5.78, 0.5),
+            new GyroTurnToAngleCommand(62),//65
+            new DriveForDistanceCommand(1.7, 0.5),
+            new WaitCommand(.2),
             new CloseHands(hand),
-            new WaitCommand(.1),
-            new ArmToAngle(m_arm,-15),
-            new GyroTurnToAngleCommand(82),
-            new DriveForDistanceCommand(1.5, 0.5)
+            new WaitCommand(.2),
+            new ArmToAngle(m_arm,-20),
+            new GyroTurnToAngleCommand(82),//82
+            new DriveForDistanceCommand(3.2, 0.5)
         );
-        */
-        addCommands(new GyroTurnToAngleCommand(72));
+        
+        //addCommands(new GyroTurnToAngleCommand(-90));
     }
 }

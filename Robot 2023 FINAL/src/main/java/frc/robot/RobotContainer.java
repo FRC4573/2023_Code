@@ -45,7 +45,7 @@ private static final Hand ourHands= new Hand();
       UsbCamera camera2 = CameraServer.startAutomaticCapture(1);
       UsbCamera camera3 = CameraServer.startAutomaticCapture(2);
 
-String trajectoryJSON = "pathplanner/generatedJSON/testpath.wpilib.json";
+String trajectoryJSON = "pathplanner/generatedJSON/testpath19.wpilib.json";
 Trajectory trajectory = new Trajectory();
 
 public RobotContainer() {
@@ -127,7 +127,7 @@ public RobotContainer() {
 
     RamseteCommand ramseteCommand =
         new RamseteCommand(
-            exampleTrajectory,
+            trajectory,
             m_robotDrive::getPose,
             new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
             new SimpleMotorFeedforward(
@@ -146,7 +146,7 @@ public RobotContainer() {
     m_robotDrive.resetOdometry(trajectory.getInitialPose());
 
     // Run path following command, then stop at the end.
-    return new AutonomousSequence(ourArm, ourHands);
+    return ramseteCommand;
   }
 
   private void configureButtonBindings() {

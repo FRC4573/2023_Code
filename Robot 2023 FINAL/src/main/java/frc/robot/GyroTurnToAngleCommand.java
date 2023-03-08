@@ -40,20 +40,17 @@ public class GyroTurnToAngleCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double error = Math.abs(targetAngle - m_DriveSubsystem.getAngle());
     System.out.println("target angle: " + targetAngle);
     //figure out the direction of the turn
     boolean direction = degreesToTurn > 0 ? true: false;
     //if the direction is false turn right
     //modify so it stops once the angle is exceeded
-    if(targetAngle <  m_DriveSubsystem.getAngle() && error > 5 && !direction){
+    if(targetAngle <  m_DriveSubsystem.getAngle()  && !direction){
       //turn left
       m_DriveSubsystem.arcadeDrive(0.0,0.6);
-      System.out.println("Current angle 1: " + m_DriveSubsystem.getAngle());
     //otherwise if the direction is true turn left
-    }else if(targetAngle> -m_DriveSubsystem.getAngle() && error>5 && direction){
+    }else if(m_DriveSubsystem.getAngle() < targetAngle && direction){
       m_DriveSubsystem.arcadeDrive(0.0,-0.6);
-      System.out.println("Current angle 2: " + m_DriveSubsystem.getAngle());
     }else{
       isCommandFinished = true;
     }

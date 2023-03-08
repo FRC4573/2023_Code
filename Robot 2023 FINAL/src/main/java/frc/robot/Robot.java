@@ -79,10 +79,7 @@ public class Robot extends TimedRobot {
 
 
    m_autonomousCommand =m_robotContainer.getAutonomousCommand();
-   System.out.println("HERERERERE");
-    // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
-      System.out.println("AUTO SET");
       m_autonomousCommand.schedule();
     }
   }
