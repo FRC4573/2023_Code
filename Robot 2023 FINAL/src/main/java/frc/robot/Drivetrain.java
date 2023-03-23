@@ -74,14 +74,6 @@ public class Drivetrain extends SubsystemBase {
     m_odometry.update(
         m_gyro.getRotation2d(), m_leftEncoder.getDistance(), m_rightEncoder.getDistance());
         //encoder smartdashboard output
-    SmartDashboard.putNumber("Left Encoder Distance", m_leftEncoder.getDistance());
-    SmartDashboard.putNumber("Right Encoder Distance", m_rightEncoder.getDistance());
-
-    SmartDashboard.putBoolean("Left Encoder Stopped", m_leftEncoder.getStopped());
-    SmartDashboard.putBoolean("Right Encoder Stopped", m_rightEncoder.getStopped());
-
-    SmartDashboard.putBoolean("Left Encoder Direction", m_leftEncoder.getDirection());
-    SmartDashboard.putBoolean("Right Encoder Direction", m_rightEncoder.getDirection());
     SmartDashboard.putNumber(   "Gyro Angle",         m_gyro.getAngle());
   }
 
@@ -113,10 +105,10 @@ public class Drivetrain extends SubsystemBase {
   }
     // Distance will be measured in meters
     public double getLeftDistance() {
-      return m_leftEncoder.getDistance()*100000; // Multiply by 1000 to convert from millimeters to meters
+      return m_leftEncoder.getDistance()*10; // Multiply by 1000 to convert from millimeters to meters
     }
     public double getRightDistance() {
-      return m_rightEncoder.getDistance()*100000; // Multiply by 1000 to convert from millimeters to meters
+      return m_rightEncoder.getDistance()*10; // Multiply by 1000 to convert from millimeters to meters
     }
 
   /**

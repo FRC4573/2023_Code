@@ -13,20 +13,12 @@ import edu.wpi.first.util.sendable.SendableBuilder;
 public class Hand extends SubsystemBase{
     private final DoubleSolenoid m_handSolenoid =
     new DoubleSolenoid(
-        PneumaticsModuleType.CTREPCM,
+        PneumaticsModuleType.REVPH,
         0,
         1);
           /** Grabs the hatch. */
   public void openHands() {
     m_handSolenoid.set(kForward);
-  }
-  public Command[] seqCommand(){
-    Command arr[] = new Command[1];
-    arr[0] = openHandCommand();
-    return arr;
-  }
-  public Command openHandCommand(){
-    return run(()->m_handSolenoid.set(kForward));
   }
   /** Releases the hatch. */
   public void closeHands() {

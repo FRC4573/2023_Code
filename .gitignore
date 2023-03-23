@@ -1,2 +1,4 @@
-**/build/jni
-**/build/tmp
+**/build
+**/gradle
+**/.gradle
+**/.vscode

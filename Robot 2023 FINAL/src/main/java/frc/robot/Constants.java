@@ -18,12 +18,12 @@ import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 public final class Constants {
   public static final class DriveConstants {
     public static final int kLeftMotor1Port = 4;
-    public static final int kLeftMotor2Port = 2;
-    public static final int kRightMotor1Port = 3;
-    public static final int kRightMotor2Port = 1;
+    public static final int kLeftMotor2Port = 3;
+    public static final int kRightMotor1Port = 1;
+    public static final int kRightMotor2Port = 2;
 
     public static final int[] kLeftEncoderPorts = new int[] {0, 1};
-    public static final int[] kRightEncoderPorts = new int[] {2, 3};
+    public static final int[] kRightEncoderPorts = new int[] {2, 4};
     public static final boolean kLeftEncoderReversed = false;
     public static final boolean kRightEncoderReversed = true;
 
@@ -31,8 +31,8 @@ public final class Constants {
     public static final DifferentialDriveKinematics kDriveKinematics =
         new DifferentialDriveKinematics(kTrackwidthMeters);
 
-    public static final int kEncoderCPR = 360;
-    public static final double kWheelDiameterMeters = 0.000002;
+    public static final int kEncoderCPR = 2048;
+    public static final double kWheelDiameterMeters = 0.0127;
     public static final double kEncoderDistancePerPulse =
         // Assumes the encoders are directly mounted on the wheel shafts
         (kWheelDiameterMeters * Math.PI) / (double) kEncoderCPR;
