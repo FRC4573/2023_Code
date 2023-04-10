@@ -14,7 +14,7 @@ public class Hand extends SubsystemBase{
     private final DoubleSolenoid m_handSolenoid =
     new DoubleSolenoid(
         PneumaticsModuleType.REVPH,
-        0,
+        4,
         1);
           /** Grabs the hatch. */
   public void openHands() {

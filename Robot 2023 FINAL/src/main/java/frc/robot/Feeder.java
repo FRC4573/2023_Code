@@ -32,7 +32,7 @@ public Feeder(){
     m_ArmAngle.set(0.0);
   }
   public CommandBase feedOutCommand(){
-    return run(()->m_ArmAngle.set(0.3));
+    return run(()->m_ArmAngle.set(0.5));
   }
   public CommandBase stopFeed(){
     return run(()->m_ArmAngle.set(0.0));

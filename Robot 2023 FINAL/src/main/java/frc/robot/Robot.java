@@ -32,11 +32,11 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
   private static final String kScoreNdStraightLong = "Just Arm and Straight long";
   private static final String kScoreNdStraightShort = "Just Arm and Straight short";
-  private static final String kScoreNdPlatformLeft = "Just Arm and Straight Left";
-  private static final String kScoreNdPlatformRight = "Just Arm and Straight Right";
+  private static final String kScoreNdPlatform = "Just Arm and Balance";
+  private static final String kScoreNdPlatformMobile = "Just Arm Mobile & Balance";
   private static final String kJustArm = "Just Arm";
   private String m_autoSelected;
-  private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  private SendableChooser<String> m_chooser;
 
   /* public Command getAutonomousCommand() {
     return m_chooser.getSelected();
@@ -50,20 +50,16 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+    m_chooser = new SendableChooser<>();
     m_robotContainer = new RobotContainer();
+
     m_chooser.addOption("Score and Straight Long", kScoreNdStraightLong);
     m_chooser.addOption("Score and Straight Short", kScoreNdStraightShort);
-    m_chooser.addOption("Score Platform from Right Side", kScoreNdPlatformRight);
-    m_chooser.addOption("Score Platform from Left Side", kScoreNdPlatformLeft);
+    m_chooser.addOption("Score and Balance", kScoreNdPlatform);
+    m_chooser.addOption("Score Cross and Balance", kScoreNdPlatformMobile);
     m_chooser.addOption("Just Arm", kJustArm);
     SmartDashboard.putData("Auto choices", m_chooser);
     
-    try {
-      Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(m_robotContainer.trajectoryJSON);
-      m_robotContainer.trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
-   } catch (IOException ex) {
-      DriverStation.reportError("Unable to open trajectory: " + m_robotContainer.trajectoryJSON, ex.getStackTrace());
-    }
 
   }
 
@@ -98,7 +94,10 @@ public class Robot extends TimedRobot {
     System.out.println("Chosen routine" + m_chooser.getSelected());
    m_autonomousCommand =m_robotContainer.getAutonomousCommand(m_chooser.getSelected());
     if (m_autonomousCommand != null) {
+      System.out.println("Chosen command" + m_autonomousCommand);
       m_autonomousCommand.schedule();
+    }else{
+      System.out.println("Autonomous commannd not set");
     }
   }
 

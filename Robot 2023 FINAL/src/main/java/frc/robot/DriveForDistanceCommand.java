@@ -40,7 +40,7 @@ public class DriveForDistanceCommand extends CommandBase {
   @Override
   public void execute() {
     // Print statements for debugging
-    if(m_DriveSubsystem.getLeftDistance()<distance){
+    if(m_DriveSubsystem.getRightDistance()<distance){
       m_DriveSubsystem.drive(percentPower, percentPower);
       System.out.println("current Distance" + m_DriveSubsystem.getRightDistance() + "Target Distance" + distance);
     }else{

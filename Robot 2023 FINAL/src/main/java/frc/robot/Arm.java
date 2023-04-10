@@ -49,8 +49,14 @@ public Arm(){
   public void armDownSlow(){
     m_ArmAngle.set(-0.3);
   }
+  public void armDownSuperFast(){
+    m_ArmAngle.set(-0.7);
+  }
   public void armUpFast(){
     m_ArmAngle.set(0.4);
+  }
+  public void armUpSuperFast(){
+    m_ArmAngle.set(0.7);
   }
   public void armDownFast(){
     m_ArmAngle.set(-0.4);

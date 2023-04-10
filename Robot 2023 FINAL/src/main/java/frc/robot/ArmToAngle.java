@@ -24,7 +24,7 @@ public class ArmToAngle extends CommandBase {
   @Override
   public void execute(){
     if(encoder.getPosition()>=angle){
-      m_armSubsystem.armDownSlow();
+      m_armSubsystem.armDownFast();
     }else{
       isCommandFinished = true;
     }

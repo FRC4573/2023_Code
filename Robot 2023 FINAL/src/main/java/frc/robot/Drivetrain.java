@@ -75,6 +75,7 @@ public class Drivetrain extends SubsystemBase {
         m_gyro.getRotation2d(), m_leftEncoder.getDistance(), m_rightEncoder.getDistance());
         //encoder smartdashboard output
     SmartDashboard.putNumber(   "Gyro Angle",         m_gyro.getAngle());
+    SmartDashboard.putNumber(   "Gyro Pitch",         m_gyro.getPitch());
   }
 
   /**

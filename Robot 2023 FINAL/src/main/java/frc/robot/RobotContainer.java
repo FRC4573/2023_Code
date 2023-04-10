@@ -82,9 +82,7 @@ public RobotContainer() {
    */
   public Command getAutonomousCommand(String m_autoSelected) {
     // Create a voltage constraint to ensure we don't accelerate too fast
-   
-    m_robotDrive.resetOdometry(trajectory.getInitialPose());
-
+    System.out.println("Robot Container auto " +m_autoSelected );
     return new AutonomousSequence(ourArm, ourHands, m_autoSelected);
         
 
@@ -104,7 +102,8 @@ public RobotContainer() {
     new JoystickButton(m_armController, 9).onFalse(ourFeeder.stopFeed());
     new JoystickButton(m_armController, 2).onTrue(ourArm.backwardArm());
     new JoystickButton(m_armController, 2).onFalse(ourArm.stopArm());
-    new JoystickButton(m_armController, 6).onTrue(new BalanceOnBeam());
+    new JoystickButton(m_armController, 6).onTrue(new Balance());
+        new JoystickButton(m_armController, 6).onFalse(new DriveForDistanceCommand(0, 0));
     new JoystickButton(m_armController, 7).onTrue(new AutonomousSequence(ourArm, ourHands,"neither"));
     new JoystickButton(m_armController, 7).onFalse((ourArm.stopArm()));
   }

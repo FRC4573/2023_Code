@@ -18,12 +18,13 @@ public class BalanceOnBeam extends CommandBase {
   double error; // How "incorrect" the current angle of the robot is as its moving
   double targetAngle; // targetAngle = initial angle + degreesToTurn
   boolean isCommandFinished;
+  double speed = 0.6;
+  int offbalancepositivehalf = 7;
   /** Turns to an angle relative to the current angle using the gyro */
   public BalanceOnBeam() {
     m_DriveSubsystem = RobotContainer.gDrivetrain();
     m_DriveSubsystem.zeroGyro();
     addRequirements(m_DriveSubsystem);
-    this.degreesToTurn = -6;
   }
 
   // Called when the command is initially scheduled.
@@ -31,33 +32,23 @@ public class BalanceOnBeam extends CommandBase {
   public void initialize() {
     m_DriveSubsystem.resetEncoders();
     m_DriveSubsystem.zeroGyro();
-    this.targetAngle = 11;
-    System.out.println("CURRENT ANGLE:" + m_DriveSubsystem.getPitch());
-    System.out.println("TARGET ANGLE:" + targetAngle);
     isCommandFinished = false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("target angle: " + targetAngle);
-    //figure out the direction of the turn
-    boolean direction = degreesToTurn > 0 ? true: false;
-    //if the direction is false turn right
-    //modify so it stops once the angle is exceeded
-    System.out.println("Target Angle " + targetAngle + "current Angle " + m_DriveSubsystem.getPitch()+ "direction "+ direction );
-    if(targetAngle <  m_DriveSubsystem.getPitch() ){
-      //turn left
-      System.out.println("drive forward");
-      m_DriveSubsystem.arcadeDrive(0.5,0.0);
+
+    if (m_DriveSubsystem.getPitch() >= offbalancepositivehalf){
+      m_DriveSubsystem.arcadeDrive(speed,0.0);
     //otherwise if the direction is true turn left
-    }else if(m_DriveSubsystem.getPitch() < targetAngle){
+    }else if(m_DriveSubsystem.getPitch() <= -offbalancepositivehalf){
       System.out.println("drive backwards");
-      m_DriveSubsystem.arcadeDrive(-0.5,0.0);
+      m_DriveSubsystem.arcadeDrive(speed, 0.0);
     }else{
-      System.out.println("finished");
       isCommandFinished = true;
     }
+    speed = 0.36 + m_DriveSubsystem.getPitch()/100;
   }
 
   // Called once the command ends or is interrupted.

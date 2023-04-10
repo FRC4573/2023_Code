@@ -22,8 +22,8 @@ public class ArmToAngleBackward extends CommandBase {
   }
   @Override
   public void execute(){
-    if(encoder.getPosition()<=70){
-      m_armSubsystem.armUpSlow();
+    if(encoder.getPosition()<=60){
+      m_armSubsystem.armUpFast();
     }else{
       isCommandFinished = true;
     }
